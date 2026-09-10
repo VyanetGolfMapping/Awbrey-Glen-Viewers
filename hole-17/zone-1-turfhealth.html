@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
-<title>Awbrey Glen Golf Club · Hole 17 — Turf Health</title>
+<title>Awbrey Glen Golf Club · Hole 17 — Multispectral</title>
 <style>
   :root { --teal:#16a34a; --ink:#0a0a0a; --muted:#4b5563; --line:#d1fae5; --panel:#f3faf4; }
   * { box-sizing:border-box; -webkit-tap-highlight-color:rgba(22,163,74,.2); }
@@ -49,11 +49,9 @@
   </div>
   <img src="../vyanet-logo.png" alt="VYANET" />
 </header>
-<nav class="tabs">
-  <a class="tab " href="zone-1-thermal.html">Thermal</a><a class="tab " href="zone-1-2d.html">2D</a><a class="tab " href="zone-1-satellite.html">Satellite</a><a class="tab active" href="zone-1-turfhealth.html">Turf Health</a>
-</nav>
+<nav class="tabs"><a class="tab " href="index.html">DEM</a><a class="tab active" href="turfhealth.html">Multispectral</a><a class="tab " href="satellite.html">Satellite</a><a class="tab " href="2d.html">2D</a></nav>
 <div class="stage">
-  <img src="zone-1-turfhealth.jpg" alt="Turf Health map" />
+  <img src="zone-1-turfhealth.jpg" alt="Multispectral map" />
 </div>
 <div class="wrap">
   <a class="back" href="turfhealth.html">← Back to full hole</a>
@@ -61,12 +59,12 @@
   
   <div class="panel">
     <h2>LAYER LEGENDS</h2>
-    <div style="font-size:12px;font-weight:700;margin-top:6px;">Thermal</div>
+    <div style="font-size:12px;font-weight:700;margin-top:6px;">DEM</div>
     <div class="scale"></div>
-    <div class="labs"><span>COOL / MOIST</span><span>HOT / DRY</span></div>
-    <div style="font-size:12px;font-weight:700;margin-top:12px;">Turf Health</div>
+    <div class="labs"><span>LOW</span><span>HIGH</span></div>
+    <div style="font-size:12px;font-weight:700;margin-top:12px;">Multispectral</div>
     <div class="health"></div>
-    <div class="labs"><span>CRITICAL</span><span>STRESSED</span><span>HEALTHY</span></div>
+    <div class="labs"><span>LOW VIGOR</span><span>MODERATE</span><span>HIGH VIGOR</span></div>
   </div>
   <div class="home"><a href="../index.html">All holes</a></div>
 </div>
