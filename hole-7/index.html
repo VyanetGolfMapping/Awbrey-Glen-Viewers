@@ -250,7 +250,7 @@ header {
   // clear older keys that caused pin snap-back
   try { localStorage.removeItem('vyanet-zones-hole' + HOLE); localStorage.removeItem('vyanet-zones-hole' + HOLE + '-v4'); localStorage.removeItem('vyanet-zones-hole' + HOLE + '-v5'); sessionStorage.removeItem('vyanet-zones-hole' + HOLE); } catch (e) {}
   const DEFAULT_ZONES = {"1": {"x": 0.5464, "y": 0.8461}, "2": {"x": 0.5574, "y": 0.4834}, "3": {"x": 0.5113, "y": 0.1571}};
-  const LAYER_ZONES = {"thermal": {"1": {"x": 0.585, "y": 0.885}, "2": {"x": 0.355, "y": 0.495}, "3": {"x": 0.36, "y": 0.125}}, "satellite": {"1": {"x": 0.5464, "y": 0.8461}, "2": {"x": 0.5574, "y": 0.4834}, "3": {"x": 0.5113, "y": 0.1571}}, "topo": {"1": {"x": 0.5464, "y": 0.8461}, "2": {"x": 0.5574, "y": 0.4834}, "3": {"x": 0.5113, "y": 0.1571}}, "turfhealth": {"1": {"x": 0.5464, "y": 0.8461}, "2": {"x": 0.5574, "y": 0.4834}, "3": {"x": 0.5113, "y": 0.1571}}};
+  const LAYER_ZONES = {"thermal": {"1": {"x": 0.585, "y": 0.885}, "2": {"x": 0.355, "y": 0.495}, "3": {"x": 0.6063, "y": 0.2514}}, "satellite": {"1": {"x": 0.5464, "y": 0.8461}, "2": {"x": 0.5574, "y": 0.4834}, "3": {"x": 0.5113, "y": 0.1571}}, "topo": {"1": {"x": 0.5464, "y": 0.8461}, "2": {"x": 0.5574, "y": 0.4834}, "3": {"x": 0.5113, "y": 0.1571}}, "turfhealth": {"1": {"x": 0.5464, "y": 0.8461}, "2": {"x": 0.5574, "y": 0.4834}, "3": {"x": 0.5113, "y": 0.1571}}};
   const LAYERS = {
     thermal: {
       src: 'view-thermal.jpg',
