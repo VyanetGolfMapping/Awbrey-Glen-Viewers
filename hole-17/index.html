@@ -183,14 +183,31 @@ header.brand-bar .logo-span {
   object-fit:cover; object-position:center; background:#0b1f12;
 }
 header.brand-bar .hole-meta {
-  display:flex; justify-content:space-between; align-items:baseline; gap:10px;
+  display:flex; justify-content:space-between; align-items:center; gap:12px;
   padding:8px 14px; background:#0a0a0a; color:#fff;
   border-top:1px solid #e5e5e5;
 }
 header.brand-bar .hole-meta h1 { margin:0; font-size:14px; letter-spacing:.04em; font-weight:800; color:#fff; }
 header.brand-bar .hole-meta p { margin:0; font-size:11px; color:#a3a3a3; line-height:1.35; text-align:right; }
+header.brand-bar .hole-meta .meta-text { min-width:0; flex:1 1 auto; }
+header.brand-bar .back-main {
+  flex:0 0 auto;
+  display:inline-flex; align-items:center; gap:6px;
+  background:#16a34a; color:#fff !important; font-weight:800; font-size:13px;
+  padding:10px 14px; border-radius:999px; text-decoration:none; min-height:44px;
+  white-space:nowrap; box-shadow:0 4px 12px rgba(0,0,0,.35);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+}
+header.brand-bar .back-main:hover { background:#22c55e; }
+.home-bar a.back-main {
+  display:inline-flex; align-items:center; gap:6px;
+  background:#16a34a; color:#fff !important; font-weight:800; font-size:13px;
+  padding:10px 16px; border-radius:999px; text-decoration:none; min-height:44px;
+  margin:0 8px 0 0; vertical-align:middle;
+}
 @media (max-width:700px) {
   header.brand-bar .logo-span { max-height:68px; }
+  header.brand-bar .back-main { font-size:12px; padding:8px 12px; }
   header.brand-bar .hole-meta { flex-direction:column; align-items:flex-start; gap:2px; padding:8px 12px; }
   header.brand-bar .hole-meta p { text-align:left; }
 }
@@ -200,8 +217,11 @@ header.brand-bar .hole-meta p { margin:0; font-size:11px; color:#a3a3a3; line-he
 <header class="brand-bar">
   <img class="logo-span" src="vyanet-logo-banner.png" alt="VYANET Drone Digital Mapping" />
   <div class="hole-meta">
-    <h1>AWBREY GLEN · HOLE 17</h1>
-    <p>Par 4 · uphill approach · tree-lined corridor</p>
+    <div class="meta-text">
+      <h1>AWBREY GLEN · HOLE 17</h1>
+      <p>Par 4 · uphill approach · tree-lined corridor</p>
+    </div>
+    <a class="back-main" href="../index.html?v=26">← Main menu</a>
   </div>
 </header>
 <nav class="tabs" id="tabs">
@@ -234,7 +254,7 @@ header.brand-bar .hole-meta p { margin:0; font-size:11px; color:#a3a3a3; line-he
   </div>
   <aside class="side-legend" id="legend" aria-live="polite"></aside>
 </div>
-<div class="home-bar"><a href="../index.html">All holes</a> · Awbrey Glen · VYANET Drone Digital Mapping</div>
+<div class="home-bar"><a class="back-main" href="../index.html?v=26">← Main menu</a> Awbrey Glen · VYANET</div>
 
 <script>
 (function() {
