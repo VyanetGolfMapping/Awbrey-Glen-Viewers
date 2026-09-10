@@ -311,10 +311,18 @@ header img { height:44px; width:auto; }
       const raw = localStorage.getItem(STORAGE_KEY);
       if (raw) {
         const parsed = JSON.parse(raw);
-        if (parsed && parsed['1'] && parsed['2'] && parsed['3']) return parsed;
+        const z = (parsed && parsed.zones) ? parsed.zones : parsed;
+        if (z && z['1'] && z['2'] && z['3']) return z;
       }
     } catch (e) {}
     return JSON.parse(JSON.stringify(DEFAULT_ZONES));
+  }
+
+  function persistZones() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(zones));
+    } catch (e) {}
+    refreshEditJson();
   }
 
   function applyTransform() {
@@ -364,15 +372,15 @@ header img { height:44px; width:auto; }
       el.addEventListener('click', function(ev) {
         if (editMode) return;
         ev.stopPropagation();
-        // zoom toward pin
+        const zz = zones[id];
+        if (!zz) return;
         const rect = stage.getBoundingClientRect();
-        const px = tx + z.x * imgW * scale;
-        const py = ty + z.y * imgH * scale;
+        const px = tx + zz.x * imgW * scale;
+        const py = ty + zz.y * imgH * scale;
         zoomAt(1.35, rect.left + px, rect.top + py);
-        // center a bit
         const sw = stage.clientWidth, sh = stage.clientHeight;
-        tx += (sw/2 - (tx + z.x * imgW * scale));
-        ty += (sh/2 - (ty + z.y * imgH * scale));
+        tx += (sw/2 - (tx + zz.x * imgW * scale));
+        ty += (sh/2 - (ty + zz.y * imgH * scale));
         applyTransform();
       });
       // drag in edit mode
@@ -394,12 +402,15 @@ header img { height:44px; width:auto; }
         };
         const up = function() {
           el.classList.remove('dragging');
-          el.releasePointerCapture(ev.pointerId);
+          try { el.releasePointerCapture(ev.pointerId); } catch (err) {}
           el.removeEventListener('pointermove', move);
           el.removeEventListener('pointerup', up);
+          el.removeEventListener('pointercancel', up);
+          persistZones();
         };
         el.addEventListener('pointermove', move);
         el.addEventListener('pointerup', up);
+        el.addEventListener('pointercancel', up);
       });
       pinsEl.appendChild(el);
     });
@@ -438,7 +449,8 @@ header img { height:44px; width:auto; }
     const reset = document.getElementById('resetPins');
     const dl = document.getElementById('downloadZones');
     if (save) save.onclick = function() {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(zones));
+      persistZones();
+      placePins();
       save.textContent = 'Saved ✓';
       setTimeout(function(){ save.textContent = 'Save positions'; }, 1200);
     };
@@ -498,11 +510,28 @@ header img { height:44px; width:auto; }
   document.getElementById('zoomOut').onclick = function(){ zoomAt(1/1.25); };
   document.getElementById('fitBtn').onclick = function(){ fit(); };
   editBtn.onclick = function() {
-    editMode = !editMode;
-    editBtn.classList.toggle('active-edit', editMode);
-    editBtn.textContent = editMode ? 'Done editing' : 'Edit pins';
-    stage.classList.toggle('edit-pins', editMode);
-    renderLegend();
+    if (editMode) {
+      // Leaving edit mode — always persist current pin positions
+      persistZones();
+      placePins();
+      editMode = false;
+      editBtn.classList.remove('active-edit');
+      editBtn.textContent = 'Edit pins';
+      stage.classList.remove('edit-pins');
+      renderLegend();
+      const tip = document.getElementById('hint');
+      if (tip) {
+        const prev = tip.textContent;
+        tip.textContent = 'Pins saved on this device';
+        setTimeout(function(){ tip.textContent = prev; }, 1800);
+      }
+    } else {
+      editMode = true;
+      editBtn.classList.add('active-edit');
+      editBtn.textContent = 'Done — save pins';
+      stage.classList.add('edit-pins');
+      renderLegend();
+    }
   };
 
   // pointer drag pan
