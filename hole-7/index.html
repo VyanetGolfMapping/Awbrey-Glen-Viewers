@@ -337,8 +337,8 @@ header {
   const legend = document.getElementById('legend');
   const editBtn = document.getElementById('editPinsBtn');
 
-  let zones = loadZones();
   let layer = 'thermal';
+  let zones = loadZones();
   let scale = 1, tx = 0, ty = 0;
   let imgW = 1, imgH = 1;
   let editMode = false;
@@ -541,7 +541,7 @@ header {
       setTimeout(function(){ save.textContent = 'Save positions'; }, 1200);
     };
     if (reset) reset.onclick = function() {
-      zones = JSON.parse(JSON.stringify(DEFAULT_ZONES));
+      zones = loadZones();
       localStorage.removeItem(STORAGE_KEY);
       placePins(); refreshEditJson();
     };
