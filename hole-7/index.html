@@ -2,47 +2,169 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
-<title>Awbrey Glen Golf Club · Hole 7 — Thermal</title>
+<title>AWBREY GLEN · HOLE 7 — VYANET Interactive</title>
 <style>
-  :root { --teal:#16a34a; --ink:#0a0a0a; --muted:#4b5563; --line:#d1fae5; --panel:#f3faf4; }
-  * { box-sizing:border-box; -webkit-tap-highlight-color:rgba(22,163,74,.2); }
-  body { margin:0; font-family:-apple-system,system-ui,Segoe UI,Helvetica,Arial,sans-serif; background:#fff; color:var(--ink); }
-  header { background:var(--teal); color:#fff; padding:12px 14px; display:flex; justify-content:space-between; align-items:center; gap:10px; border-left:6px solid #0a0a0a; }
-  header h1 { margin:0; font-size:16px; }
-  header p { margin:3px 0 0; font-size:11px; opacity:.9; }
-  header img { height:48px; width:auto; }
-  .tabs { display:flex; flex-wrap:wrap; gap:6px; padding:10px; background:var(--panel); border-bottom:1px solid var(--line); position:sticky; top:0; z-index:10; }
-  .tab { flex:1 1 18%; text-align:center; text-decoration:none; color:var(--muted); font-weight:700; font-size:12px;
-    padding:10px 6px; border-radius:999px; background:#e7f8ec; min-height:44px; display:flex; align-items:center; justify-content:center; }
-  .tab.active { background:var(--teal); color:#fff; }
-  .tab.cta { background:#0f172a; color:#86efac; }
-  .stage { background:#0a0a0a; padding:10px; text-align:center; }
-  .stage img { width:100%; max-width:640px; height:auto; border-radius:8px; }
-  .wrap { padding:12px; max-width:720px; margin:0 auto; }
-  .zone { display:flex; gap:12px; align-items:flex-start; text-decoration:none; color:inherit;
-    padding:14px 10px; border-bottom:1px solid var(--line); border-radius:10px; min-height:52px; }
-  .zone:active { background:#ecfdf5; }
-  .num { width:32px; height:32px; border-radius:50%; background:var(--teal); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; flex:0 0 auto; }
-  .zone strong { display:block; }
-  .zone small { color:var(--muted); font-size:12px; line-height:1.35; }
-  .detail { background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:14px; margin-bottom:12px; }
-  .badge { display:inline-block; background:var(--teal); color:#fff; font-size:11px; font-weight:700; padding:3px 8px; border-radius:999px; }
-  .detail h2 { margin:8px 0 6px; font-size:18px; }
-  .detail p { margin:0; color:var(--muted); font-size:14px; }
-  .back { display:inline-flex; align-items:center; min-height:44px; font-weight:700; color:var(--teal); text-decoration:none; margin-bottom:8px; }
-  .panel { background:#fff; border:1px solid var(--line); border-radius:12px; padding:14px; margin-top:12px; }
-  .panel h2 { margin:0 0 8px; font-size:14px; }
-  .thermal { height:16px; border-radius:4px; margin:8px 0 6px; background:linear-gradient(90deg,#2e1065,#1e3a8a,#0284c7,#22d3ee,#4ade80,#facc15,#f97316,#dc2626,#fecaca); }
-  .health { height:16px; border-radius:4px; margin:8px 0 6px; background:linear-gradient(90deg,#ef4444,#f97316,#22c55e); }
-  .labs { display:flex; justify-content:space-between; font-size:11px; color:var(--muted); }
-  .btn3d { display:block; text-align:center; margin:14px 0 4px; padding:14px; border-radius:12px; background:#0f172a; color:#86efac; font-weight:800; text-decoration:none; }
-  .btn3d span { display:block; font-weight:500; font-size:12px; color:#94a3b8; margin-top:4px; }
-  footer { text-align:center; color:var(--muted); font-size:12px; padding:18px 8px 28px; }
-  .home { text-align:center; padding:8px; }
-  .home a { color:var(--teal); font-weight:700; text-decoration:none; }
-  .links a { color:#166534; font-weight:700; }
+:root {
+  --teal:#16a34a; --teal-dark:#15803d; --ink:#0a0a0a; --muted:#4b5563;
+  --line:#bbf7d0; --panel:#f0fdf4; --stage:#0b1220; --legend-w:260px;
+}
+* { box-sizing:border-box; -webkit-tap-highlight-color:rgba(22,163,74,.18); }
+html,body { height:100%; margin:0; }
+body {
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  background:#fff; color:var(--ink); display:flex; flex-direction:column;
+  overflow:hidden;
+}
+header {
+  background:var(--teal); color:#fff; padding:10px 14px;
+  display:flex; justify-content:space-between; align-items:center; gap:10px;
+  border-left:6px solid #0a0a0a; flex:0 0 auto;
+}
+header h1 { margin:0; font-size:15px; letter-spacing:.02em; }
+header p { margin:3px 0 0; font-size:11px; opacity:.92; line-height:1.35; }
+header img { height:44px; width:auto; }
+.tabs {
+  display:flex; flex-wrap:nowrap; gap:6px; padding:8px 10px;
+  background:var(--panel); border-bottom:1px solid var(--line);
+  overflow-x:auto; flex:0 0 auto; -webkit-overflow-scrolling:touch;
+}
+.tab {
+  flex:1 1 0; min-width:72px; text-align:center; text-decoration:none;
+  color:var(--muted); font-weight:700; font-size:12px; padding:10px 8px;
+  border-radius:999px; background:#e7f8ec; min-height:44px;
+  display:flex; align-items:center; justify-content:center; border:0; cursor:pointer;
+  white-space:nowrap;
+}
+.tab.active { background:var(--teal); color:#fff; }
+.tab.cta { background:#0f172a; color:#86efac; text-decoration:none; }
+.main {
+  flex:1 1 auto; display:flex; min-height:0; background:#fff;
+}
+.map-col {
+  flex:1 1 auto; min-width:0; position:relative; display:flex; flex-direction:column;
+  background:var(--stage);
+}
+.map-stage {
+  flex:1 1 auto; position:relative; overflow:hidden; touch-action:none;
+  cursor:grab; user-select:none;
+}
+.map-stage.dragging { cursor:grabbing; }
+.map-stage.edit-pins { cursor:crosshair; }
+.map-world {
+  position:absolute; left:0; top:0; transform-origin:0 0; will-change:transform;
+}
+.map-world img.layer {
+  display:block; width:auto; height:auto; max-width:none;
+  pointer-events:none; user-select:none;
+}
+.pin {
+  position:absolute; width:34px; height:34px; margin-left:-17px; margin-top:-17px;
+  border-radius:50%; background:var(--teal); color:#fff; font-weight:800;
+  font-size:14px; display:flex; align-items:center; justify-content:center;
+  border:3px solid #fff; box-shadow:0 2px 8px rgba(0,0,0,.45);
+  cursor:pointer; z-index:5; touch-action:none;
+}
+.pin:hover, .pin:focus { transform:scale(1.08); outline:none; }
+.pin.dragging { transform:scale(1.15); background:#0f172a; }
+.controls {
+  position:absolute; right:10px; bottom:10px; z-index:8;
+  display:grid; grid-template-columns:repeat(3,48px); gap:6px;
+  padding:8px; background:rgba(15,23,42,.88); border-radius:14px;
+  backdrop-filter:blur(6px);
+}
+.controls button {
+  width:48px; height:48px; border:0; border-radius:10px;
+  background:#1e293b; color:#ecfdf5; font-size:18px; font-weight:800;
+  cursor:pointer; display:flex; align-items:center; justify-content:center;
+}
+.controls button:active { background:var(--teal); }
+.controls button.wide { grid-column:span 3; font-size:12px; letter-spacing:.02em; }
+.controls button.active-edit { background:var(--teal); color:#fff; }
+.hint {
+  position:absolute; left:10px; bottom:10px; z-index:7;
+  background:rgba(15,23,42,.78); color:#e2e8f0; font-size:11px;
+  padding:8px 10px; border-radius:10px; max-width:min(220px,50vw); line-height:1.35;
+}
+.side-legend {
+  flex:0 0 var(--legend-w); width:var(--legend-w); max-width:100%;
+  background:var(--panel); border-left:1px solid var(--line);
+  overflow:auto; padding:12px 14px 20px; -webkit-overflow-scrolling:touch;
+}
+.side-legend h2 {
+  margin:0 0 6px; font-size:13px; color:var(--teal-dark);
+  text-transform:uppercase; letter-spacing:.04em;
+}
+.side-legend .badge {
+  display:inline-block; background:var(--teal); color:#fff;
+  font-size:10px; font-weight:800; padding:3px 8px; border-radius:999px;
+  margin-bottom:8px;
+}
+.side-legend p, .side-legend li {
+  margin:0 0 8px; font-size:12.5px; color:#334155; line-height:1.45;
+}
+.side-legend ul { margin:0 0 10px; padding-left:18px; }
+.grad {
+  height:14px; border-radius:6px; margin:6px 0 4px;
+}
+.grad.thermal { background:linear-gradient(90deg,#2e1065,#1e3a8a,#0284c7,#22d3ee,#4ade80,#facc15,#f97316,#dc2626,#fecaca); }
+.grad.health { background:linear-gradient(90deg,#ef4444,#f97316,#22c55e); }
+.grad.topo { background:linear-gradient(90deg,#f4efe6,#d4b483,#a16207,#5a2d0c,#1c0a02); }
+.labs { display:flex; justify-content:space-between; font-size:10px; color:var(--muted); margin-bottom:10px; }
+.zone-list { margin-top:12px; padding-top:10px; border-top:1px solid var(--line); }
+.zone-item {
+  display:flex; gap:10px; align-items:center; padding:8px 0;
+  font-size:13px; font-weight:600;
+}
+.zone-item .num {
+  width:28px; height:28px; border-radius:50%; background:var(--teal);
+  color:#fff; display:flex; align-items:center; justify-content:center; font-size:12px;
+}
+.zone-item small { display:block; font-weight:500; color:var(--muted); font-size:11px; }
+.line-demo { display:flex; flex-direction:column; gap:8px; margin:8px 0 12px; }
+.line-demo .row { display:flex; align-items:center; gap:10px; font-size:12px; color:#334155; }
+.line-demo .sw { height:0; border-top:3px solid #5a2d0c; width:36px; flex:0 0 auto; }
+.line-demo .sw.thin { border-top-width:1.5px; border-color:#6b3f1f; }
+.note-box {
+  background:#fff; border:1px solid #fcd34d; border-radius:10px;
+  padding:8px 10px; font-size:11.5px; color:#78350f; margin:8px 0 0; line-height:1.4;
+}
+.edit-panel {
+  display:none; margin-top:12px; padding:10px; background:#0f172a; color:#e2e8f0;
+  border-radius:12px; font-size:12px; line-height:1.4;
+}
+.edit-panel.show { display:block; }
+.edit-panel button, .edit-panel a.btn {
+  display:inline-flex; align-items:center; justify-content:center;
+  min-height:44px; padding:0 12px; margin:6px 6px 0 0; border:0; border-radius:10px;
+  background:var(--teal); color:#fff; font-weight:700; font-size:12px; cursor:pointer;
+  text-decoration:none;
+}
+.edit-panel textarea {
+  width:100%; min-height:110px; margin-top:8px; font-family:ui-monospace,Menlo,Consolas,monospace;
+  font-size:11px; border-radius:8px; border:1px solid #334155; background:#020617; color:#86efac;
+  padding:8px;
+}
+.home-bar {
+  flex:0 0 auto; text-align:center; padding:6px; background:#fff;
+  border-top:1px solid #e5e7eb; font-size:12px;
+}
+.home-bar a { color:var(--teal); font-weight:700; text-decoration:none; }
+
+@media (max-width:820px) {
+  body { overflow:auto; height:auto; min-height:100%; }
+  .main { flex-direction:column; min-height:70vh; }
+  .map-col { min-height:62vh; }
+  .map-stage { min-height:58vh; }
+  .side-legend {
+    flex:0 0 auto; width:100%; border-left:0; border-top:1px solid var(--line);
+    max-height:none;
+  }
+  .controls { right:8px; bottom:8px; grid-template-columns:repeat(3,44px); gap:5px; padding:6px; }
+  .controls button { width:44px; height:44px; }
+  .hint { display:none; }
+}
 </style>
 </head>
 <body>
@@ -53,35 +175,396 @@
   </div>
   <img src="../vyanet-logo.png" alt="VYANET" />
 </header>
-<nav class="tabs"><a class="tab active" href="index.html">Thermal</a><a class="tab " href="satellite.html">Satellite</a><a class="tab " href="topo.html">2D Topo</a><a class="tab " href="turfhealth.html">Turf Health</a><a class="tab cta" href="../3d/hole7-3d.html">3D</a></nav>
-<div class="stage">
-  <img src="view-thermal.jpg" alt="Thermal map" />
+<nav class="tabs" id="tabs">
+  <button type="button" class="tab active" data-layer="thermal">Thermal</button>
+  <button type="button" class="tab" data-layer="satellite">Satellite</button>
+  <button type="button" class="tab" data-layer="topo">2D Topo</button>
+  <button type="button" class="tab" data-layer="turfhealth">Turf Health</button>
+  <a class="tab cta" href="../3d/hole7-3d.html">3D</a>
+</nav>
+<div class="main">
+  <div class="map-col">
+    <div class="map-stage" id="stage" aria-label="Hole map">
+      <div class="map-world" id="world">
+        <img class="layer" id="layerImg" src="view-thermal.jpg" alt="Hole layer" draggable="false" />
+        <div id="pins"></div>
+      </div>
+      <div class="controls" aria-label="Map controls">
+        <span></span>
+        <button type="button" id="panUp" title="Pan up">↑</button>
+        <span></span>
+        <button type="button" id="panLeft" title="Pan left">←</button>
+        <button type="button" id="fitBtn" title="Fit / reset">⟲</button>
+        <button type="button" id="panRight" title="Pan right">→</button>
+        <button type="button" id="zoomOut" title="Zoom out">−</button>
+        <button type="button" id="panDown" title="Pan down">↓</button>
+        <button type="button" id="zoomIn" title="Zoom in">+</button>
+        <button type="button" class="wide" id="editPinsBtn">Edit pins</button>
+      </div>
+      <div class="hint" id="hint">Drag to pan · wheel/pinch zoom · arrows move · Edit pins to fine-tune</div>
+    </div>
+  </div>
+  <aside class="side-legend" id="legend" aria-live="polite"></aside>
 </div>
-<div class="wrap">
-  
-  <div class="panel">
-    <span class="badge">THERMAL</span>
-    <h2 style="margin-top:8px">Cool → Hot thermal imagery</h2>
-  </div>
-  <div class="panel"><h2>ZONES — tap to highlight</h2><a class="zone" href="zone-1-thermal.html"><span class="num">1</span><div><strong>Tee / start</strong><small>Tee boxes and the opening of the hole.</small></div></a><a class="zone" href="zone-2-thermal.html"><span class="num">2</span><div><strong>Fairway / mid</strong><small>Mid-hole corridor — fairway, bunkers, rough, tree lines.</small></div></a><a class="zone" href="zone-3-thermal.html"><span class="num">3</span><div><strong>Green / approach</strong><small>Approach, greenside bunkers, and putting surface.</small></div></a></div>
-  
-  <div class="panel">
-    <h2>LAYER LEGENDS</h2>
-    <div style="font-size:12px;font-weight:700;margin-top:6px;">Thermal</div>
-    <div class="thermal"></div>
-    <div class="labs"><span>COOL</span><span>HOT</span></div>
-    <div style="font-size:12px;font-weight:700;margin-top:12px;">Turf Health</div>
-    <div class="health"></div>
-    <div class="labs"><span>CRITICAL</span><span>STRESSED</span><span>HEALTHY</span></div>
-    <p class="links" style="margin-top:12px;font-size:13px;line-height:1.5">
-      <a href="../topo/legend.html">2D Topo contour legend →</a><br/>
-      <a href="../topo/turfhealth-legend.html">Turf Health color legend →</a>
-    </p>
-  </div>
-  <a class="btn3d" href="../3d/hole7-3d.html">Open 3D Interactive<span>Satellite texture · estimated DEM · orbit / pinch zoom</span></a>
+<div class="home-bar"><a href="../index.html">All holes</a> · Awbrey Glen · VYANET Drone Digital Mapping</div>
 
-  <div class="home"><a href="../index.html">All holes</a></div>
-</div>
-<footer>Awbrey Glen Golf Club · Bend, OR · VYANET Drone Digital Mapping</footer>
+<script>
+(function() {
+  const HOLE = 7;
+  const STORAGE_KEY = 'vyanet-zones-hole' + HOLE;
+  const DEFAULT_ZONES = {"1": {"x": 0.535, "y": 0.905}, "2": {"x": 0.515, "y": 0.5}, "3": {"x": 0.505, "y": 0.095}};
+  const LAYERS = {
+    thermal: {
+      src: 'view-thermal.jpg',
+      badge: 'THERMAL',
+      title: 'Cool → Hot thermal imagery',
+      html: `
+        <span class="badge">THERMAL</span>
+        <h2>What this layer shows</h2>
+        <p>Surface temperature patterns from thermal imagery. Cooler areas often hold more moisture; warmer areas may be drier or stressed.</p>
+        <div class="grad thermal"></div>
+        <div class="labs"><span>COOL</span><span>HOT</span></div>
+        <ul>
+          <li>Use for irrigation coverage and moisture clues</li>
+          <li>Compare with Satellite and Turf Health for context</li>
+          <li>Not elevation — brown topo lines live on the 2D Topo tab</li>
+        </ul>`
+    },
+    satellite: {
+      src: 'view-satellite.jpg',
+      badge: 'SATELLITE',
+      title: 'Stitched drone ortho',
+      html: `
+        <span class="badge">SATELLITE</span>
+        <h2>Natural-color context</h2>
+        <p>Stitched drone orthomosaic of this hole — fairway, bunkers, trees, cart path, and surrounds in true color.</p>
+        <ul>
+          <li>Best overview for orientation and pin placement</li>
+          <li>Use pan/zoom to inspect tee, landing zones, and green</li>
+          <li>Pair with Thermal / Turf Health for agronomy detail</li>
+        </ul>`
+    },
+    topo: {
+      src: 'view-topo.jpg',
+      badge: '2D TOPO',
+      title: 'Relative contours + hillshade',
+      html: `
+        <span class="badge">2D TOPO</span>
+        <h2>Brown contours</h2>
+        <p><strong>Brown lines</strong> = relative elevation contours estimated for this hole. Soft gray shading is hillshade (surface relief).</p>
+        <h2>What the numbers mean</h2>
+        <p>Labels are a <strong>relative elevation index 0–100 on THIS hole</strong>. Higher number = higher ground. Lower number = lower ground.</p>
+        <div class="grad topo"></div>
+        <div class="labs"><span>0 low</span><span>50</span><span>100 high</span></div>
+        <div class="line-demo">
+          <div class="row"><span class="sw"></span> Index contour (thicker, labeled)</div>
+          <div class="row"><span class="sw thin"></span> Intermediate contour (thinner)</div>
+        </div>
+        <ul>
+          <li>Lines close together = steeper slope</li>
+          <li>Lines farther apart = flatter ground</li>
+          <li><strong>Not</strong> survey feet/meters, LiDAR, or thermal</li>
+        </ul>
+        <div class="note-box">Demo / presentation grade from RGB drone imagery — not a NAVD88 survey datum.</div>`
+    },
+    turfhealth: {
+      src: 'view-turfhealth.jpg',
+      badge: 'TURF HEALTH',
+      title: 'Critical / Stressed / Healthy',
+      html: `
+        <span class="badge">TURF HEALTH</span>
+        <h2>RGB vegetation index (demo)</h2>
+        <p>Three-band highlight from the drone RGB stitch — prioritize scouting, then verify on the ground.</p>
+        <div class="grad health"></div>
+        <div class="labs"><span>CRITICAL</span><span>STRESSED</span><span>HEALTHY</span></div>
+        <ul>
+          <li><strong style="color:#ef4444">Critical</strong> — lowest green vigor in the turf mask</li>
+          <li><strong style="color:#f97316">Stressed</strong> — moderate / transition</li>
+          <li><strong style="color:#22c55e">Healthy</strong> — strongest excess-green response</li>
+        </ul>
+        <div class="note-box">Demo from RGB (not a multispectral NDVI sensor).</div>`
+    }
+  };
+
+  const ZONE_LABELS = {
+    '1': ['Tee', 'Tee / start of the hole'],
+    '2': ['Fairway', 'Mid-fairway corridor'],
+    '3': ['Green', 'Approach / putting green']
+  };
+
+  const stage = document.getElementById('stage');
+  const world = document.getElementById('world');
+  const layerImg = document.getElementById('layerImg');
+  const pinsEl = document.getElementById('pins');
+  const legend = document.getElementById('legend');
+  const editBtn = document.getElementById('editPinsBtn');
+
+  let zones = loadZones();
+  let layer = 'thermal';
+  let scale = 1, tx = 0, ty = 0;
+  let imgW = 1, imgH = 1;
+  let editMode = false;
+  let fitted = false;
+
+  function loadZones() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if (parsed && parsed['1'] && parsed['2'] && parsed['3']) return parsed;
+      }
+    } catch (e) {}
+    return JSON.parse(JSON.stringify(DEFAULT_ZONES));
+  }
+
+  function applyTransform() {
+    world.style.transform = 'translate(' + tx + 'px,' + ty + 'px) scale(' + scale + ')';
+  }
+
+  function fit() {
+    const sw = stage.clientWidth;
+    const sh = stage.clientHeight;
+    if (!imgW || !imgH || !sw || !sh) return;
+    const s = Math.min(sw / imgW, sh / imgH) * 0.98;
+    scale = s;
+    tx = (sw - imgW * s) / 2;
+    ty = (sh - imgH * s) / 2;
+    applyTransform();
+    fitted = true;
+  }
+
+  function panBy(dx, dy) {
+    tx += dx; ty += dy; applyTransform();
+  }
+  function zoomAt(factor, cx, cy) {
+    const rect = stage.getBoundingClientRect();
+    const x = (cx != null ? cx : rect.left + rect.width/2) - rect.left;
+    const y = (cy != null ? cy : rect.top + rect.height/2) - rect.top;
+    const nx = (x - tx) / scale;
+    const ny = (y - ty) / scale;
+    const next = Math.min(8, Math.max(0.2, scale * factor));
+    tx = x - nx * next;
+    ty = y - ny * next;
+    scale = next;
+    applyTransform();
+  }
+
+  function placePins() {
+    pinsEl.innerHTML = '';
+    Object.keys(zones).sort().forEach(function(id) {
+      const z = zones[id];
+      const el = document.createElement('button');
+      el.type = 'button';
+      el.className = 'pin';
+      el.textContent = id;
+      el.style.left = (z.x * imgW) + 'px';
+      el.style.top = (z.y * imgH) + 'px';
+      el.dataset.id = id;
+      el.title = ZONE_LABELS[id] ? ZONE_LABELS[id][0] : ('Zone ' + id);
+      el.addEventListener('click', function(ev) {
+        if (editMode) return;
+        ev.stopPropagation();
+        // zoom toward pin
+        const rect = stage.getBoundingClientRect();
+        const px = tx + z.x * imgW * scale;
+        const py = ty + z.y * imgH * scale;
+        zoomAt(1.35, rect.left + px, rect.top + py);
+        // center a bit
+        const sw = stage.clientWidth, sh = stage.clientHeight;
+        tx += (sw/2 - (tx + z.x * imgW * scale));
+        ty += (sh/2 - (ty + z.y * imgH * scale));
+        applyTransform();
+      });
+      // drag in edit mode
+      el.addEventListener('pointerdown', function(ev) {
+        if (!editMode) return;
+        ev.preventDefault(); ev.stopPropagation();
+        el.classList.add('dragging');
+        el.setPointerCapture(ev.pointerId);
+        const move = function(e) {
+          const rect = stage.getBoundingClientRect();
+          const ix = (e.clientX - rect.left - tx) / scale;
+          const iy = (e.clientY - rect.top - ty) / scale;
+          const nx = Math.min(1, Math.max(0, ix / imgW));
+          const ny = Math.min(1, Math.max(0, iy / imgH));
+          zones[id] = { x: +nx.toFixed(4), y: +ny.toFixed(4) };
+          el.style.left = (nx * imgW) + 'px';
+          el.style.top = (ny * imgH) + 'px';
+          refreshEditJson();
+        };
+        const up = function() {
+          el.classList.remove('dragging');
+          el.releasePointerCapture(ev.pointerId);
+          el.removeEventListener('pointermove', move);
+          el.removeEventListener('pointerup', up);
+        };
+        el.addEventListener('pointermove', move);
+        el.addEventListener('pointerup', up);
+      });
+      pinsEl.appendChild(el);
+    });
+  }
+
+  function zonesPayload() {
+    return { hole: String(HOLE), zones: zones };
+  }
+
+  function refreshEditJson() {
+    const ta = document.getElementById('zonesJson');
+    if (ta) ta.value = JSON.stringify(zonesPayload(), null, 2);
+  }
+
+  function renderLegend() {
+    const L = LAYERS[layer];
+    let zonesHtml = '<div class="zone-list"><h2>Zones</h2>';
+    ['1','2','3'].forEach(function(id) {
+      const lab = ZONE_LABELS[id];
+      zonesHtml += '<div class="zone-item"><span class="num">' + id + '</span><div>' + lab[0] + '<small>' + lab[1] + '</small></div></div>';
+    });
+    zonesHtml += '</div>';
+    let editHtml = `
+      <div class="edit-panel ${editMode ? 'show' : ''}" id="editPanel">
+        <strong>Pin editor</strong>
+        <p style="margin:6px 0 0">Drag the numbered pins on the map. Positions are fractions of image width/height (0–1).</p>
+        <button type="button" id="savePins">Save positions</button>
+        <button type="button" id="resetPins">Reset defaults</button>
+        <a class="btn" id="downloadZones" href="#">Download zones.json</a>
+        <textarea id="zonesJson" readonly></textarea>
+        <p style="margin:6px 0 0;color:#94a3b8">Saved to localStorage key <code>${STORAGE_KEY}</code>. Copy JSON or download for Blake to drop into the course pack.</p>
+      </div>`;
+    legend.innerHTML = L.html + zonesHtml + editHtml;
+    refreshEditJson();
+    const save = document.getElementById('savePins');
+    const reset = document.getElementById('resetPins');
+    const dl = document.getElementById('downloadZones');
+    if (save) save.onclick = function() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(zones));
+      save.textContent = 'Saved ✓';
+      setTimeout(function(){ save.textContent = 'Save positions'; }, 1200);
+    };
+    if (reset) reset.onclick = function() {
+      zones = JSON.parse(JSON.stringify(DEFAULT_ZONES));
+      localStorage.removeItem(STORAGE_KEY);
+      placePins(); refreshEditJson();
+    };
+    if (dl) dl.onclick = function(e) {
+      e.preventDefault();
+      const blob = new Blob([JSON.stringify(zonesPayload(), null, 2)], {type:'application/json'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'zones.json'; a.click();
+      URL.revokeObjectURL(url);
+    };
+  }
+
+  function setLayer(name) {
+    if (!LAYERS[name]) return;
+    layer = name;
+    document.querySelectorAll('.tab[data-layer]').forEach(function(t) {
+      t.classList.toggle('active', t.dataset.layer === name);
+    });
+    const keep = { scale: scale, tx: tx, ty: ty, fitted: fitted };
+    layerImg.onload = function() {
+      imgW = layerImg.naturalWidth;
+      imgH = layerImg.naturalHeight;
+      layerImg.style.width = imgW + 'px';
+      layerImg.style.height = imgH + 'px';
+      world.style.width = imgW + 'px';
+      world.style.height = imgH + 'px';
+      placePins();
+      if (!keep.fitted) fit();
+      else { scale = keep.scale; tx = keep.tx; ty = keep.ty; applyTransform(); }
+    };
+    layerImg.src = LAYERS[name].src;
+    renderLegend();
+    if (location.hash.replace('#','') !== name) {
+      history.replaceState(null, '', '#' + name);
+    }
+  }
+
+  // tabs
+  document.getElementById('tabs').addEventListener('click', function(e) {
+    const t = e.target.closest('[data-layer]');
+    if (t) setLayer(t.dataset.layer);
+  });
+
+  // controls
+  const panStep = function() { return Math.min(stage.clientWidth, stage.clientHeight) * 0.12; };
+  document.getElementById('panUp').onclick = function(){ panBy(0, panStep()); };
+  document.getElementById('panDown').onclick = function(){ panBy(0, -panStep()); };
+  document.getElementById('panLeft').onclick = function(){ panBy(panStep(), 0); };
+  document.getElementById('panRight').onclick = function(){ panBy(-panStep(), 0); };
+  document.getElementById('zoomIn').onclick = function(){ zoomAt(1.25); };
+  document.getElementById('zoomOut').onclick = function(){ zoomAt(1/1.25); };
+  document.getElementById('fitBtn').onclick = function(){ fit(); };
+  editBtn.onclick = function() {
+    editMode = !editMode;
+    editBtn.classList.toggle('active-edit', editMode);
+    editBtn.textContent = editMode ? 'Done editing' : 'Edit pins';
+    stage.classList.toggle('edit-pins', editMode);
+    renderLegend();
+  };
+
+  // pointer drag pan
+  let dragging = false, lastX=0, lastY=0;
+  stage.addEventListener('pointerdown', function(e) {
+    if (e.target.closest('.controls') || e.target.closest('.pin')) return;
+    dragging = true; lastX = e.clientX; lastY = e.clientY;
+    stage.classList.add('dragging');
+    stage.setPointerCapture(e.pointerId);
+  });
+  stage.addEventListener('pointermove', function(e) {
+    if (!dragging) return;
+    panBy(e.clientX - lastX, e.clientY - lastY);
+    lastX = e.clientX; lastY = e.clientY;
+  });
+  stage.addEventListener('pointerup', function() {
+    dragging = false; stage.classList.remove('dragging');
+  });
+  stage.addEventListener('pointercancel', function() {
+    dragging = false; stage.classList.remove('dragging');
+  });
+
+  // wheel zoom toward cursor
+  stage.addEventListener('wheel', function(e) {
+    e.preventDefault();
+    const factor = e.deltaY < 0 ? 1.12 : 1/1.12;
+    zoomAt(factor, e.clientX, e.clientY);
+  }, { passive:false });
+
+  // pinch zoom
+  let pinch = null;
+  stage.addEventListener('touchstart', function(e) {
+    if (e.touches.length === 2) {
+      const a = e.touches[0], b = e.touches[1];
+      pinch = {
+        dist: Math.hypot(a.clientX-b.clientX, a.clientY-b.clientY),
+        cx: (a.clientX+b.clientX)/2,
+        cy: (a.clientY+b.clientY)/2
+      };
+      dragging = false;
+    }
+  }, {passive:true});
+  stage.addEventListener('touchmove', function(e) {
+    if (e.touches.length === 2 && pinch) {
+      e.preventDefault();
+      const a = e.touches[0], b = e.touches[1];
+      const dist = Math.hypot(a.clientX-b.clientX, a.clientY-b.clientY);
+      const cx = (a.clientX+b.clientX)/2, cy = (a.clientY+b.clientY)/2;
+      zoomAt(dist / pinch.dist, pinch.cx, pinch.cy);
+      panBy(cx - pinch.cx, cy - pinch.cy);
+      pinch = { dist: dist, cx: cx, cy: cy };
+    }
+  }, {passive:false});
+  stage.addEventListener('touchend', function() { pinch = null; });
+
+  window.addEventListener('resize', function() { if (fitted) fit(); });
+
+  // boot from hash
+  const boot = (location.hash || '#thermal').replace('#','').toLowerCase();
+  const start = LAYERS[boot] ? boot : 'thermal';
+  setLayer(start);
+})();
+</script>
 </body>
 </html>
