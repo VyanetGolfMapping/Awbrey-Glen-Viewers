@@ -8,13 +8,27 @@ header{background:#16a34a;color:#fff;padding:16px;border-left:6px solid #0a0a0a;
 header img{height:56px}
 a.card{display:block;margin:14px;padding:18px;border:1px solid #d1fae5;border-radius:14px;text-decoration:none;color:inherit;background:#f3faf4;font-weight:700;font-size:18px;min-height:56px}
 a.card span{display:block;font-weight:500;font-size:13px;color:#4b5563;margin-top:4px}
-.note{margin:14px;padding:12px;background:#f5f0e6;border-radius:10px;color:#44403c;font-size:13px;line-height:1.4;border:1px solid #c4b59a}
+a.card.dark{background:#0f172a;border-color:#1e293b;color:#fff}
+a.card.dark span{color:#94a3b8}
+.note{margin:14px;padding:12px;background:#f3faf4;border-radius:10px;color:#166534;font-size:13px;line-height:1.45;border:1px solid #d1fae5}
+.platforms{margin:0 14px 8px;padding:0;list-style:none;display:grid;gap:6px}
+.platforms li{background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:10px 12px;font-size:13px;color:#374151}
+.platforms strong{color:#0a0a0a}
 </style></head><body>
 <header><div><h1 style="margin:0;font-size:20px">AWBREY GLEN</h1><p style="margin:4px 0 0;opacity:.9">VYANET Drone Digital Mapping</p></div>
 <img src="vyanet-logo.png" alt="VYANET" /></header>
-<div class="note"><strong>2D topographic maps</strong> from your drone orthos — hillshade + brown contours. Not thermal.</div>
-<a class="card" href="hole-7/index.html">Hole 7<span>Par 4 · downhill · 2D topographic map</span></a>
-<a class="card" href="topo/index.html">2D Topographic Maps<span>Holes 7 &amp; 17 · classic contour sheets</span></a>
+<div class="note"><strong>Client platforms</strong> for Holes 7 &amp; 17 — Thermal, Satellite (stitched drone), 2D Topo, Turf Health, plus interactive 3D.</div>
+<ul class="platforms">
+  <li><strong>Thermal</strong> — original thermal imagery (cool → hot)</li>
+  <li><strong>Satellite</strong> — new stitched drone ortho</li>
+  <li><strong>2D Topo</strong> — classic brown-contour topo sheets</li>
+  <li><strong>Turf Health</strong> — Critical / Stressed / Healthy demo from RGB stitch</li>
+  <li><strong>3D Interactive</strong> — Three.js orbit viewer (satellite texture + estimated DEM)</li>
+</ul>
+<a class="card" href="hole-7/index.html">Hole 7<span>Par 4 · downhill · Thermal · Satellite · 2D Topo · Turf Health</span></a>
+<a class="card" href="hole-17/index.html">Hole 17<span>Par 4 · uphill · Thermal · Satellite · 2D Topo · Turf Health</span></a>
+<a class="card dark" href="3d/index.html">3D Interactive<span>Holes 7 &amp; 17 · satellite texture + estimated height DEM</span></a>
+<a class="card" href="topo/index.html">2D Topographic Maps<span>Classic contour sheets · gallery</span></a>
 <a class="card" href="topo/legend.html">Topo contour legend<span>What the numbers on the maps mean</span></a>
-<a class="card" href="hole-17/index.html">Hole 17<span>Par 4 · uphill · 2D topographic map</span></a>
+<a class="card" href="topo/turfhealth-legend.html">Turf Health legend<span>Critical (red) · Stressed (orange) · Healthy (green)</span></a>
 </body></html>

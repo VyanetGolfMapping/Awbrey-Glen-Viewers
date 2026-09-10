@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
-<title>Awbrey Glen Golf Club · Hole 7 — Satellite</title>
+<title>Awbrey Glen Golf Club · Hole 7 — Satellite · ZONE 2</title>
 <style>
   :root { --teal:#16a34a; --ink:#0a0a0a; --muted:#4b5563; --line:#d1fae5; --panel:#f3faf4; }
   * { box-sizing:border-box; -webkit-tap-highlight-color:rgba(22,163,74,.2); }
@@ -14,11 +14,12 @@
   header p { margin:3px 0 0; font-size:11px; opacity:.9; }
   header img { height:48px; width:auto; }
   .tabs { display:flex; flex-wrap:wrap; gap:6px; padding:10px; background:var(--panel); border-bottom:1px solid var(--line); position:sticky; top:0; z-index:10; }
-  .tab { flex:1 1 20%; text-align:center; text-decoration:none; color:var(--muted); font-weight:700; font-size:13px;
-    padding:12px 8px; border-radius:999px; background:#e7f8ec; min-height:44px; display:flex; align-items:center; justify-content:center; }
+  .tab { flex:1 1 18%; text-align:center; text-decoration:none; color:var(--muted); font-weight:700; font-size:12px;
+    padding:10px 6px; border-radius:999px; background:#e7f8ec; min-height:44px; display:flex; align-items:center; justify-content:center; }
   .tab.active { background:var(--teal); color:#fff; }
+  .tab.cta { background:#0f172a; color:#86efac; }
   .stage { background:#0a0a0a; padding:10px; text-align:center; }
-  .stage img { width:100%; max-width:560px; height:auto; border-radius:8px; }
+  .stage img { width:100%; max-width:640px; height:auto; border-radius:8px; }
   .wrap { padding:12px; max-width:720px; margin:0 auto; }
   .zone { display:flex; gap:12px; align-items:flex-start; text-decoration:none; color:inherit;
     padding:14px 10px; border-bottom:1px solid var(--line); border-radius:10px; min-height:52px; }
@@ -33,12 +34,15 @@
   .back { display:inline-flex; align-items:center; min-height:44px; font-weight:700; color:var(--teal); text-decoration:none; margin-bottom:8px; }
   .panel { background:#fff; border:1px solid var(--line); border-radius:12px; padding:14px; margin-top:12px; }
   .panel h2 { margin:0 0 8px; font-size:14px; }
-  .scale { height:16px; border-radius:4px; margin:8px 0 6px; background:linear-gradient(90deg,#2e1065,#1e3a8a,#0284c7,#22d3ee,#4ade80,#facc15,#f97316,#dc2626,#fecaca); }
-  .health { height:16px; border-radius:4px; margin:8px 0 6px; background:linear-gradient(90deg,#ef4444,#f97316,#a3e635,#22c55e); }
+  .thermal { height:16px; border-radius:4px; margin:8px 0 6px; background:linear-gradient(90deg,#2e1065,#1e3a8a,#0284c7,#22d3ee,#4ade80,#facc15,#f97316,#dc2626,#fecaca); }
+  .health { height:16px; border-radius:4px; margin:8px 0 6px; background:linear-gradient(90deg,#ef4444,#f97316,#22c55e); }
   .labs { display:flex; justify-content:space-between; font-size:11px; color:var(--muted); }
+  .btn3d { display:block; text-align:center; margin:14px 0 4px; padding:14px; border-radius:12px; background:#0f172a; color:#86efac; font-weight:800; text-decoration:none; }
+  .btn3d span { display:block; font-weight:500; font-size:12px; color:#94a3b8; margin-top:4px; }
   footer { text-align:center; color:var(--muted); font-size:12px; padding:18px 8px 28px; }
   .home { text-align:center; padding:8px; }
   .home a { color:var(--teal); font-weight:700; text-decoration:none; }
+  .links a { color:#166534; font-weight:700; }
 </style>
 </head>
 <body>
@@ -49,23 +53,40 @@
   </div>
   <img src="../vyanet-logo.png" alt="VYANET" />
 </header>
-<nav class="tabs"><a class="tab " href="index.html">DEM</a><a class="tab " href="turfhealth.html">Multispectral</a><a class="tab active" href="satellite.html">Satellite</a><a class="tab " href="2d.html">2D</a></nav>
+<nav class="tabs"><a class="tab " href="index.html">Thermal</a><a class="tab " href="satellite.html">Satellite</a><a class="tab " href="topo.html">2D Topo</a><a class="tab " href="turfhealth.html">Turf Health</a><a class="tab cta" href="../3d/hole7-3d.html">3D</a></nav>
 <div class="stage">
   <img src="zone-2-satellite.jpg" alt="Satellite map" />
 </div>
 <div class="wrap">
-  <a class="back" href="satellite.html">← Back to full hole</a>
-  <div class="detail"><div class="badge">Zone 2</div><h2>Fairway / mid</h2><p>Mid-hole corridor — fairway, bunkers, rough, tree lines.</p></div>
+  
+  <a class="back" href="satellite.html">← All zones · Satellite</a>
+  <div class="detail">
+    <span class="badge">ZONE 2</span>
+    <h2>Fairway / mid</h2>
+    <p>Mid-hole corridor — fairway, bunkers, rough, tree lines.</p>
+  </div>
+
+  <div class="panel">
+    <span class="badge">SATELLITE</span>
+    <h2 style="margin-top:8px">Stitched drone satellite ortho</h2>
+  </div>
+  
   
   <div class="panel">
     <h2>LAYER LEGENDS</h2>
-    <div style="font-size:12px;font-weight:700;margin-top:6px;">DEM</div>
-    <div class="scale"></div>
-    <div class="labs"><span>LOW</span><span>HIGH</span></div>
-    <div style="font-size:12px;font-weight:700;margin-top:12px;">Multispectral</div>
+    <div style="font-size:12px;font-weight:700;margin-top:6px;">Thermal</div>
+    <div class="thermal"></div>
+    <div class="labs"><span>COOL</span><span>HOT</span></div>
+    <div style="font-size:12px;font-weight:700;margin-top:12px;">Turf Health</div>
     <div class="health"></div>
-    <div class="labs"><span>LOW VIGOR</span><span>MODERATE</span><span>HIGH VIGOR</span></div>
+    <div class="labs"><span>CRITICAL</span><span>STRESSED</span><span>HEALTHY</span></div>
+    <p class="links" style="margin-top:12px;font-size:13px;line-height:1.5">
+      <a href="../topo/legend.html">2D Topo contour legend →</a><br/>
+      <a href="../topo/turfhealth-legend.html">Turf Health color legend →</a>
+    </p>
   </div>
+  <a class="btn3d" href="../3d/hole7-3d.html">Open 3D Interactive<span>Satellite texture · estimated DEM · orbit / pinch zoom</span></a>
+
   <div class="home"><a href="../index.html">All holes</a></div>
 </div>
 <footer>Awbrey Glen Golf Club · Bend, OR · VYANET Drone Digital Mapping</footer>

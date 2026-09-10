@@ -3,51 +3,83 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>Awbrey Glen Golf Club · Hole 17 — 2D Topographic Map</title>
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<title>Awbrey Glen Golf Club · Hole 17 — 2D Topo</title>
 <style>
-  :root { --teal:#16a34a; --ink:#0a0a0a; --muted:#4b5563; --line:#d1fae5; }
-  * { box-sizing:border-box; }
+  :root { --teal:#16a34a; --ink:#0a0a0a; --muted:#4b5563; --line:#d1fae5; --panel:#f3faf4; }
+  * { box-sizing:border-box; -webkit-tap-highlight-color:rgba(22,163,74,.2); }
   body { margin:0; font-family:-apple-system,system-ui,Segoe UI,Helvetica,Arial,sans-serif; background:#fff; color:var(--ink); }
   header { background:var(--teal); color:#fff; padding:12px 14px; display:flex; justify-content:space-between; align-items:center; gap:10px; border-left:6px solid #0a0a0a; }
   header h1 { margin:0; font-size:16px; }
   header p { margin:3px 0 0; font-size:11px; opacity:.9; }
   header img { height:48px; width:auto; }
-  .stage { background:#1c1917; padding:10px; text-align:center; }
-  .stage img { width:100%; max-width:720px; height:auto; border-radius:8px; }
+  .tabs { display:flex; flex-wrap:wrap; gap:6px; padding:10px; background:var(--panel); border-bottom:1px solid var(--line); position:sticky; top:0; z-index:10; }
+  .tab { flex:1 1 18%; text-align:center; text-decoration:none; color:var(--muted); font-weight:700; font-size:12px;
+    padding:10px 6px; border-radius:999px; background:#e7f8ec; min-height:44px; display:flex; align-items:center; justify-content:center; }
+  .tab.active { background:var(--teal); color:#fff; }
+  .tab.cta { background:#0f172a; color:#86efac; }
+  .stage { background:#0a0a0a; padding:10px; text-align:center; }
+  .stage img { width:100%; max-width:640px; height:auto; border-radius:8px; }
   .wrap { padding:12px; max-width:720px; margin:0 auto; }
-  .panel { background:#f5f0e6; border:1px solid #c4b59a; border-radius:12px; padding:14px; margin-top:12px; }
-  .panel h2 { margin:8px 0 6px; font-size:16px; }
-  .panel p { margin:0; color:#44403c; font-size:13px; line-height:1.45; }
-  .badge { display:inline-block; background:#6b3e1a; color:#fff; font-size:11px; font-weight:700; padding:3px 8px; border-radius:999px; }
+  .zone { display:flex; gap:12px; align-items:flex-start; text-decoration:none; color:inherit;
+    padding:14px 10px; border-bottom:1px solid var(--line); border-radius:10px; min-height:52px; }
+  .zone:active { background:#ecfdf5; }
+  .num { width:32px; height:32px; border-radius:50%; background:var(--teal); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; flex:0 0 auto; }
+  .zone strong { display:block; }
+  .zone small { color:var(--muted); font-size:12px; line-height:1.35; }
+  .detail { background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:14px; margin-bottom:12px; }
+  .badge { display:inline-block; background:var(--teal); color:#fff; font-size:11px; font-weight:700; padding:3px 8px; border-radius:999px; }
+  .detail h2 { margin:8px 0 6px; font-size:18px; }
+  .detail p { margin:0; color:var(--muted); font-size:14px; }
+  .back { display:inline-flex; align-items:center; min-height:44px; font-weight:700; color:var(--teal); text-decoration:none; margin-bottom:8px; }
+  .panel { background:#fff; border:1px solid var(--line); border-radius:12px; padding:14px; margin-top:12px; }
+  .panel h2 { margin:0 0 8px; font-size:14px; }
+  .thermal { height:16px; border-radius:4px; margin:8px 0 6px; background:linear-gradient(90deg,#2e1065,#1e3a8a,#0284c7,#22d3ee,#4ade80,#facc15,#f97316,#dc2626,#fecaca); }
+  .health { height:16px; border-radius:4px; margin:8px 0 6px; background:linear-gradient(90deg,#ef4444,#f97316,#22c55e); }
+  .labs { display:flex; justify-content:space-between; font-size:11px; color:var(--muted); }
+  .btn3d { display:block; text-align:center; margin:14px 0 4px; padding:14px; border-radius:12px; background:#0f172a; color:#86efac; font-weight:800; text-decoration:none; }
+  .btn3d span { display:block; font-weight:500; font-size:12px; color:#94a3b8; margin-top:4px; }
+  footer { text-align:center; color:var(--muted); font-size:12px; padding:18px 8px 28px; }
   .home { text-align:center; padding:8px; }
   .home a { color:var(--teal); font-weight:700; text-decoration:none; }
-  footer { text-align:center; color:var(--muted); font-size:12px; padding:18px 8px 28px; }
+  .links a { color:#166534; font-weight:700; }
 </style>
 </head>
 <body>
 <header>
   <div>
     <h1>AWBREY GLEN · HOLE 17</h1>
-    <p>Par 4 · uphill · 2D topographic map</p>
+    <p>Par 4 · uphill approach · tree-lined corridor</p>
   </div>
   <img src="../vyanet-logo.png" alt="VYANET" />
 </header>
+<nav class="tabs"><a class="tab " href="index.html">Thermal</a><a class="tab " href="satellite.html">Satellite</a><a class="tab active" href="topo.html">2D Topo</a><a class="tab " href="turfhealth.html">Turf Health</a><a class="tab cta" href="../3d/hole17-3d.html">3D</a></nav>
 <div class="stage">
-  <img src="view-topo.jpg" alt="Hole 17 2D topographic map" />
+  <img src="view-topo.jpg" alt="2D Topo map" />
 </div>
 <div class="wrap">
+  
   <div class="panel">
-    <span class="badge">2D TOPOGRAPHIC MAP</span>
-    <h2>Hillshade + brown contours</h2>
-    <p>Classic cartographic sheet from your drone ortho. Not thermal. Contours are relative elevation estimated from the photo (demo grade — not survey LiDAR).</p>
+    <span class="badge">2D TOPO</span>
+    <h2 style="margin-top:8px">Classic hillshade + brown contours</h2>
   </div>
+  <div class="panel"><h2>ZONES — tap to highlight</h2><a class="zone" href="zone-1-topo.html"><span class="num">1</span><div><strong>Tee / start</strong><small>Tee boxes and the opening of the hole.</small></div></a><a class="zone" href="zone-2-topo.html"><span class="num">2</span><div><strong>Fairway / mid</strong><small>Mid-hole corridor — fairway, bunkers, rough, tree lines.</small></div></a><a class="zone" href="zone-3-topo.html"><span class="num">3</span><div><strong>Green / approach</strong><small>Approach, greenside bunkers, and putting surface.</small></div></a></div>
+  
   <div class="panel">
-    <span class="badge">LEGEND</span>
-    <h2>What the numbers mean</h2>
-    <p>Numbers on brown contours are a <strong>relative elevation index (0–100)</strong> for this hole. Higher = higher ground. They are not feet or meters above sea level.</p>
-    <p style="margin-top:10px"><a href="../topo/legend.html" style="color:#6b3e1a;font-weight:700">Open full legend →</a></p>
-    <img src="topo-legend.jpg" alt="Topographic map legend" style="width:100%;margin-top:10px;border-radius:8px;border:1px solid #c4b59a" />
+    <h2>LAYER LEGENDS</h2>
+    <div style="font-size:12px;font-weight:700;margin-top:6px;">Thermal</div>
+    <div class="thermal"></div>
+    <div class="labs"><span>COOL</span><span>HOT</span></div>
+    <div style="font-size:12px;font-weight:700;margin-top:12px;">Turf Health</div>
+    <div class="health"></div>
+    <div class="labs"><span>CRITICAL</span><span>STRESSED</span><span>HEALTHY</span></div>
+    <p class="links" style="margin-top:12px;font-size:13px;line-height:1.5">
+      <a href="../topo/legend.html">2D Topo contour legend →</a><br/>
+      <a href="../topo/turfhealth-legend.html">Turf Health color legend →</a>
+    </p>
   </div>
+  <a class="btn3d" href="../3d/hole17-3d.html">Open 3D Interactive<span>Satellite texture · estimated DEM · orbit / pinch zoom</span></a>
+
   <div class="home"><a href="../index.html">All holes</a></div>
 </div>
 <footer>Awbrey Glen Golf Club · Bend, OR · VYANET Drone Digital Mapping</footer>
