@@ -185,6 +185,21 @@ header img { height:44px; width:auto; }
   .controls button { width:44px; height:44px; }
   .hint { display:none; }
 }
+
+.brand-logo {
+  height: 56px; width: auto; max-width: 180px;
+  object-fit: contain;
+  background: #fff;
+  border-radius: 10px;
+  padding: 6px 10px;
+  box-shadow: 0 0 0 1px rgba(34,197,94,.35), 0 4px 14px rgba(0,0,0,.35);
+}
+header {
+  display: flex; justify-content: space-between; align-items: center; gap: 12px;
+}
+@media (max-width: 700px) {
+  .brand-logo { height: 44px; max-width: 140px; padding: 4px 8px; }
+}
 </style>
 </head>
 <body>
@@ -193,7 +208,7 @@ header img { height:44px; width:auto; }
     <h1>AWBREY GLEN · HOLE 17</h1>
     <p>Par 4 · uphill approach · tree-lined corridor</p>
   </div>
-  <img src="../vyanet-logo.png" alt="VYANET" />
+  <img class="brand-logo" src="vyanet-logo-chip.png" alt="VYANET Drone Digital Mapping" />
 </header>
 <nav class="tabs" id="tabs">
   <button type="button" class="tab active" data-layer="thermal">Thermal</button>
@@ -235,6 +250,7 @@ header img { height:44px; width:auto; }
   // clear older keys that caused pin snap-back
   try { localStorage.removeItem('vyanet-zones-hole' + HOLE); localStorage.removeItem('vyanet-zones-hole' + HOLE + '-v4'); localStorage.removeItem('vyanet-zones-hole' + HOLE + '-v5'); sessionStorage.removeItem('vyanet-zones-hole' + HOLE); } catch (e) {}
   const DEFAULT_ZONES = {"1": {"x": 0.4663, "y": 0.7772}, "2": {"x": 0.4913, "y": 0.4489}, "3": {"x": 0.4888, "y": 0.1266}};
+  const LAYER_ZONES = {"thermal": {"1": {"x": 0.3729, "y": 0.8795}, "2": {"x": 0.535, "y": 0.4996}, "3": {"x": 0.4358, "y": 0.1201}}, "satellite": {"1": {"x": 0.4663, "y": 0.7772}, "2": {"x": 0.4913, "y": 0.4489}, "3": {"x": 0.4888, "y": 0.1266}}, "topo": {"1": {"x": 0.4663, "y": 0.7772}, "2": {"x": 0.4913, "y": 0.4489}, "3": {"x": 0.4888, "y": 0.1266}}, "turfhealth": {"1": {"x": 0.4663, "y": 0.7772}, "2": {"x": 0.4913, "y": 0.4489}, "3": {"x": 0.4888, "y": 0.1266}}};
   const LAYERS = {
     thermal: {
       src: 'view-thermal.jpg',
@@ -329,8 +345,6 @@ header img { height:44px; width:auto; }
   let fitted = false;
 
   function loadZones() {
-    // Baked pin positions from Blake's marked screenshots are the source of truth.
-    // Ignore older localStorage so pins cannot snap back to stale coords.
     try {
       localStorage.removeItem('vyanet-zones-hole' + HOLE);
       localStorage.removeItem('vyanet-zones-hole' + HOLE + '-v4');
@@ -338,9 +352,9 @@ header img { height:44px; width:auto; }
       localStorage.removeItem('vyanet-zones-hole' + HOLE + '-v6');
       sessionStorage.removeItem('vyanet-zones-hole' + HOLE);
       sessionStorage.removeItem('vyanet-zones-hole' + HOLE + '-v5');
-      sessionStorage.removeItem('vyanet-zones-hole' + HOLE + '-v6');
     } catch (e) {}
-    return JSON.parse(JSON.stringify(DEFAULT_ZONES));
+    const lz = (typeof LAYER_ZONES !== 'undefined' && LAYER_ZONES[layer]) ? LAYER_ZONES[layer] : DEFAULT_ZONES;
+    return JSON.parse(JSON.stringify(lz));
   }
 
   function persistZones() {
@@ -550,6 +564,7 @@ header img { height:44px; width:auto; }
     layerImg.style.height = imgH + 'px';
     world.style.width = imgW + 'px';
     world.style.height = imgH + 'px';
+    zones = loadZones();
     placePins();
   }
 
