@@ -21,6 +21,16 @@
   .hint { position:absolute; right:12px; bottom:12px; z-index:5; font-size:12px; color:rgba(255,255,255,.75); background:rgba(0,0,0,.45);
     padding:8px 10px; border-radius:10px; max-width:180px; line-height:1.35; }
   @media (max-width:600px){ .hint{ display:none; } }
+
+  header .nav { display:flex; gap:8px; align-items:center; pointer-events:auto; }
+  header a.back {
+    display:inline-flex; align-items:center; gap:6px;
+    background:#16a34a; color:#fff !important; font-weight:800; font-size:13px;
+    padding:10px 14px; border-radius:999px; text-decoration:none; min-height:44px;
+    box-shadow:0 4px 14px rgba(0,0,0,.35);
+  }
+  header a.back:hover { background:#22c55e; }
+  header a.quiet { color:#86efac; font-weight:700; text-decoration:none; font-size:12px; padding:8px; }
 </style>
 </head>
 <body>
@@ -29,7 +39,9 @@
     <h1>AWBREY GLEN · HOLE 17 · 3D</h1>
     <p>Satellite texture · estimated DEM · drag to orbit</p>
   </div>
-  <a href="./index.html">All 3D</a>
+  <div class="nav">
+    <a class="back" href="../hole-17/index.html?v=24">← Back to Hole 17</a>
+  </div>
 </header>
 <canvas id="c"></canvas>
 <div class="hud">
