@@ -3,18 +3,20 @@
 <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Awbrey Glen — 2D Topographic Maps</title>
 <style>
-body{margin:0;font-family:-apple-system,system-ui,sans-serif;background:#fff;color:#0a0a0a}
-header{background:#16a34a;color:#fff;padding:16px;border-left:6px solid #0a0a0a;display:flex;justify-content:space-between;align-items:center}
+body{margin:0;font-family:-apple-system,system-ui,sans-serif;background:#0a0a0a;color:#f5f5f5}
+header{background:#0a0a0a;color:#fff;padding:16px;border-left:4px solid #16a34a;border-bottom:1px solid #262626;display:flex;justify-content:space-between;align-items:center}
 header img{height:56px}
-.note{margin:14px;padding:12px;background:#f5f0e6;border-radius:10px;color:#44403c;font-size:13px;line-height:1.4;border:1px solid #c4b59a}
+.note{margin:14px;padding:12px;background:#141414;border-radius:10px;color:#d4d4d4;font-size:13px;line-height:1.4;border:1px solid #262626}
+.note strong{color:#22c55e}
 .grid{display:grid;gap:16px;padding:14px;max-width:900px;margin:0 auto}
-.sheet{border:1px solid #c4b59a;border-radius:14px;overflow:hidden;background:#1c1917;text-decoration:none;color:inherit}
+.sheet{border:1px solid #262626;border-radius:14px;overflow:hidden;background:#111;text-decoration:none;color:inherit}
+.sheet:hover{border-color:#16a34a}
 .sheet img{width:100%;height:auto;display:block}
-.sheet .cap{background:#f5f0e6;padding:12px 14px;font-weight:700}
-.sheet .cap span{display:block;font-weight:500;font-size:13px;color:#57534e;margin-top:4px}
+.sheet .cap{background:#141414;padding:12px 14px;font-weight:700;color:#f5f5f5}
+.sheet .cap span{display:block;font-weight:500;font-size:13px;color:#a3a3a3;margin-top:4px}
 </style></head><body>
-<header><div><h1 style="margin:0;font-size:20px">AWBREY GLEN · 2D TOPO</h1>
-<p style="margin:4px 0 0;opacity:.9">VYANET · classic hillshade + contours</p></div>
+<header><div><h1 style="margin:0;font-size:20px;letter-spacing:.04em">AWBREY GLEN · 2D TOPO</h1>
+<p style="margin:4px 0 0;color:#a3a3a3">VYANET · classic hillshade + contours</p></div>
 <img src="../vyanet-logo.png" alt="VYANET" /></header>
 <div class="note"><strong>2D topographic maps</strong> from your drone photos. Brown contours + hillshade — relative elevation demo, not survey LiDAR.</div>
 <a class="sheet" href="legend.html" style="display:block;margin:14px"><img src="legend.jpg" alt="Topo legend" /><div class="cap">Contour number legend<span>What the numbers on the maps mean</span></div></a>
@@ -23,5 +25,5 @@ header img{height:56px}
   <a class="sheet" href="../hole-7/topo.html"><img src="hole7-topo2d.jpg" alt="Hole 7 topographic map" /><div class="cap">Hole 7 — 2D Topographic Map<span>Par 4 · downhill · hillshade + contours</span></div></a>
   <a class="sheet" href="../hole-17/topo.html"><img src="hole17-topo2d.jpg" alt="Hole 17 topographic map" /><div class="cap">Hole 17 — 2D Topographic Map<span>Par 4 · uphill · hillshade + contours</span></div></a>
 </div>
-<p style="text-align:center;padding:8px 14px 28px"><a href="../index.html" style="color:#16a34a;font-weight:700;text-decoration:none">Back to all holes</a></p>
+<p style="text-align:center;padding:8px 14px 28px"><a href="../index.html" style="color:#22c55e;font-weight:700;text-decoration:none">Back to all holes</a></p>
 </body></html>

@@ -3,19 +3,21 @@
 <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Awbrey Glen — VYANET</title>
 <style>
-body{margin:0;font-family:-apple-system,system-ui,sans-serif;background:#fff;color:#0a0a0a}
-header{background:#16a34a;color:#fff;padding:16px;border-left:6px solid #0a0a0a;display:flex;justify-content:space-between;align-items:center}
+body{margin:0;font-family:-apple-system,system-ui,sans-serif;background:#0a0a0a;color:#f5f5f5}
+header{background:#0a0a0a;color:#fff;padding:16px;border-left:4px solid #16a34a;border-bottom:1px solid #262626;display:flex;justify-content:space-between;align-items:center}
 header img{height:56px}
-a.card{display:block;margin:14px;padding:18px;border:1px solid #d1fae5;border-radius:14px;text-decoration:none;color:inherit;background:#f3faf4;font-weight:700;font-size:18px;min-height:56px}
-a.card span{display:block;font-weight:500;font-size:13px;color:#4b5563;margin-top:4px}
-a.card.dark{background:#0f172a;border-color:#1e293b;color:#fff}
-a.card.dark span{color:#94a3b8}
-.note{margin:14px;padding:12px;background:#f3faf4;border-radius:10px;color:#166534;font-size:13px;line-height:1.45;border:1px solid #d1fae5}
+a.card{display:block;margin:14px;padding:18px;border:1px solid #262626;border-radius:14px;text-decoration:none;color:#f5f5f5;background:#141414;font-weight:700;font-size:18px;min-height:56px}
+a.card:hover{border-color:#16a34a}
+a.card span{display:block;font-weight:500;font-size:13px;color:#a3a3a3;margin-top:4px}
+a.card.dark{background:#111;border-color:#16a34a;color:#fff}
+a.card.dark span{color:#a3a3a3}
+.note{margin:14px;padding:12px;background:#141414;border-radius:10px;color:#d4d4d4;font-size:13px;line-height:1.45;border:1px solid #262626}
+.note strong{color:#22c55e}
 .platforms{margin:0 14px 8px;padding:0;list-style:none;display:grid;gap:6px}
-.platforms li{background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:10px 12px;font-size:13px;color:#374151}
-.platforms strong{color:#0a0a0a}
+.platforms li{background:#141414;border:1px solid #262626;border-radius:10px;padding:10px 12px;font-size:13px;color:#a3a3a3}
+.platforms strong{color:#fff}
 </style></head><body>
-<header><div><h1 style="margin:0;font-size:20px">AWBREY GLEN</h1><p style="margin:4px 0 0;opacity:.9">VYANET Drone Digital Mapping</p></div>
+<header><div><h1 style="margin:0;font-size:20px;letter-spacing:.04em">AWBREY GLEN</h1><p style="margin:4px 0 0;color:#a3a3a3">VYANET Drone Digital Mapping</p></div>
 <img src="vyanet-logo.png" alt="VYANET" /></header>
 <div class="note"><strong>Interactive viewers</strong> for Holes 7 &amp; 17 — <strong>Pan/zoom with arrows · side legends · drag pins in Edit mode</strong>. Layers: Thermal, Satellite (stitched drone), 2D Topo, Turf Health, plus interactive 3D.</div>
 <ul class="platforms">
@@ -25,8 +27,8 @@ a.card.dark span{color:#94a3b8}
   <li><strong>Turf Health</strong> — Critical / Stressed / Healthy demo from RGB stitch</li>
   <li><strong>3D Interactive</strong> — Three.js orbit viewer (satellite texture + estimated DEM)</li>
 </ul>
-<a class="card" href="hole-7/index.html">Hole 7<span>Par 4 · downhill · pan/zoom · side legend · editable pins</span></a>
-<a class="card" href="hole-17/index.html">Hole 17<span>Par 4 · uphill · pan/zoom · side legend · editable pins</span></a>
+<a class="card" href="hole-7/index.html?v=6">Hole 7<span>Par 4 · downhill · pan/zoom · side legend · editable pins</span></a>
+<a class="card" href="hole-17/index.html?v=6">Hole 17<span>Par 4 · uphill · pan/zoom · side legend · editable pins</span></a>
 <a class="card dark" href="3d/index.html">3D Interactive<span>Holes 7 &amp; 17 · satellite texture + estimated height DEM</span></a>
 <a class="card" href="topo/index.html">2D Topographic Maps<span>Classic contour sheets · gallery</span></a>
 <a class="card" href="topo/legend.html">Topo contour legend<span>What the numbers on the maps mean</span></a>
