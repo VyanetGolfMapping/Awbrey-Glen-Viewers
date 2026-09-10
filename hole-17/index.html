@@ -509,6 +509,18 @@ header img { height:44px; width:auto; }
     };
   }
 
+
+  function applyImageSize() {
+    if (!layerImg.naturalWidth) return;
+    imgW = layerImg.naturalWidth;
+    imgH = layerImg.naturalHeight;
+    layerImg.style.width = imgW + 'px';
+    layerImg.style.height = imgH + 'px';
+    world.style.width = imgW + 'px';
+    world.style.height = imgH + 'px';
+    placePins();
+  }
+
   function setLayer(name) {
     if (!LAYERS[name]) return;
     layer = name;
@@ -516,18 +528,20 @@ header img { height:44px; width:auto; }
       t.classList.toggle('active', t.dataset.layer === name);
     });
     const keep = { scale: scale, tx: tx, ty: ty, fitted: fitted };
-    layerImg.onload = function() {
-      imgW = layerImg.naturalWidth;
-      imgH = layerImg.naturalHeight;
-      layerImg.style.width = imgW + 'px';
-      layerImg.style.height = imgH + 'px';
-      world.style.width = imgW + 'px';
-      world.style.height = imgH + 'px';
-      placePins();
+    const src = LAYERS[name].src;
+    const afterLoad = function() {
+      applyImageSize();
       if (!keep.fitted) fit();
       else { scale = keep.scale; tx = keep.tx; ty = keep.ty; applyTransform(); }
     };
-    layerImg.src = LAYERS[name].src;
+    layerImg.onload = afterLoad;
+    // Force reload path if same cache quirks
+    if (layerImg.getAttribute('src') === src && layerImg.complete && layerImg.naturalWidth) {
+      afterLoad();
+    } else {
+      layerImg.src = src;
+      if (layerImg.complete && layerImg.naturalWidth) afterLoad();
+    }
     renderLegend();
     if (location.hash.replace('#','') !== name) {
       history.replaceState(null, '', '#' + name);
