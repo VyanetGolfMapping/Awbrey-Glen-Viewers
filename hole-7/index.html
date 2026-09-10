@@ -64,14 +64,23 @@ header img { height:44px; width:auto; }
   pointer-events:none; user-select:none;
 }
 .pin {
-  position:absolute; width:34px; height:34px; margin-left:-17px; margin-top:-17px;
-  border-radius:50%; background:var(--teal); color:#fff; font-weight:800;
-  font-size:14px; display:flex; align-items:center; justify-content:center;
-  border:3px solid #fff; box-shadow:0 2px 8px rgba(0,0,0,.45);
+  position:absolute; width:52px; height:52px; margin-left:-26px; margin-top:-26px;
+  border-radius:50%; background:#fff; color:#0a0a0a; font-weight:900;
+  font-size:22px; line-height:1; display:flex; align-items:center; justify-content:center;
+  border:3px solid #0a0a0a; box-shadow:0 3px 12px rgba(0,0,0,.45);
   cursor:pointer; z-index:5; touch-action:none;
 }
-.pin:hover, .pin:focus { transform:scale(1.08); outline:none; }
-.pin.dragging { transform:scale(1.15); background:#0f172a; }
+.pin:hover, .pin:focus { transform:scale(1.06); outline:none; }
+.pin.dragging { transform:scale(1.1); background:#f8fafc; }
+.zone-item { cursor:pointer; }
+.zone-item:hover { background:#ecfdf5; }
+.zone-item .num { background:#fff; color:#0a0a0a; border:2px solid #0a0a0a; }
+.controls button small {
+  display:block; font-size:9px; font-weight:700; line-height:1.05; margin-top:2px;
+  text-transform:uppercase; letter-spacing:.02em; opacity:.9;
+}
+.controls { gap:6px; }
+.controls button { min-width:52px; padding:8px 6px; font-size:16px; flex-direction:column; }
 .controls {
   position:absolute; right:10px; bottom:10px; z-index:8;
   display:grid; grid-template-columns:repeat(3,48px); gap:6px;
@@ -195,17 +204,17 @@ header img { height:44px; width:auto; }
       </div>
       <div class="controls" aria-label="Map controls">
         <span></span>
-        <button type="button" id="panUp" title="Pan up">↑</button>
+        <button type="button" id="panUp" title="Pan up / North">↑<small>Up</small></button>
         <span></span>
-        <button type="button" id="panLeft" title="Pan left">←</button>
-        <button type="button" id="fitBtn" title="Fit / reset">⟲</button>
-        <button type="button" id="panRight" title="Pan right">→</button>
-        <button type="button" id="zoomOut" title="Zoom out">−</button>
-        <button type="button" id="panDown" title="Pan down">↓</button>
-        <button type="button" id="zoomIn" title="Zoom in">+</button>
+        <button type="button" id="panLeft" title="Pan left / West">←<small>Left</small></button>
+        <button type="button" id="fitBtn" title="Fit whole hole">⟲<small>Fit</small></button>
+        <button type="button" id="panRight" title="Pan right / East">→<small>Right</small></button>
+        <button type="button" id="zoomOut" title="Zoom out">−<small>Zoom out</small></button>
+        <button type="button" id="panDown" title="Pan down / South">↓<small>Down</small></button>
+        <button type="button" id="zoomIn" title="Zoom in">+<small>Zoom in</small></button>
         <button type="button" class="wide" id="editPinsBtn">Edit pins</button>
       </div>
-      <div class="hint" id="hint">Drag to pan · wheel/pinch zoom · arrows move · Edit pins to fine-tune</div>
+      <div class="hint" id="hint">Drag to pan · arrows = move · +/− = zoom · tap zone # in legend to jump</div>
     </div>
   </div>
   <aside class="side-legend" id="legend" aria-live="polite"></aside>
@@ -215,8 +224,10 @@ header img { height:44px; width:auto; }
 <script>
 (function() {
   const HOLE = 7;
-  const STORAGE_KEY = 'vyanet-zones-hole' + HOLE;
-  const DEFAULT_ZONES = {"1": {"x": 0.535, "y": 0.905}, "2": {"x": 0.515, "y": 0.5}, "3": {"x": 0.505, "y": 0.095}};
+  const STORAGE_KEY = 'vyanet-zones-hole' + HOLE + '-v5';
+  // clear older keys that caused pin snap-back
+  try { localStorage.removeItem('vyanet-zones-hole' + HOLE); localStorage.removeItem('vyanet-zones-hole' + HOLE + '-v4'); sessionStorage.removeItem('vyanet-zones-hole' + HOLE); } catch (e) {}
+  const DEFAULT_ZONES = {"1": {"x": 0.5471, "y": 0.8463}, "2": {"x": 0.558, "y": 0.4836}, "3": {"x": 0.512, "y": 0.1573}};
   const LAYERS = {
     thermal: {
       src: 'view-thermal.jpg',
@@ -311,19 +322,14 @@ header img { height:44px; width:auto; }
   let fitted = false;
 
   function loadZones() {
-    function ok(z) { return z && z['1'] && z['2'] && z['3'] && isFinite(+z['1'].x) && isFinite(+z['1'].y); }
-    function unwrap(parsed) {
-      if (!parsed) return null;
-      const z = parsed.zones ? parsed.zones : parsed;
-      return ok(z) ? z : null;
-    }
+    // Baked pin positions from Blake's marked screenshots are the source of truth.
+    // Ignore older localStorage so pins cannot snap back to stale coords.
     try {
-      const a = unwrap(JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null'));
-      if (a) return a;
-    } catch (e) {}
-    try {
-      const b = unwrap(JSON.parse(sessionStorage.getItem(STORAGE_KEY) || 'null'));
-      if (b) return b;
+      localStorage.removeItem('vyanet-zones-hole' + HOLE);
+      localStorage.removeItem('vyanet-zones-hole' + HOLE + '-v4');
+      localStorage.removeItem('vyanet-zones-hole' + HOLE + '-v5');
+      sessionStorage.removeItem('vyanet-zones-hole' + HOLE);
+      sessionStorage.removeItem('vyanet-zones-hole' + HOLE + '-v5');
     } catch (e) {}
     return JSON.parse(JSON.stringify(DEFAULT_ZONES));
   }
@@ -369,6 +375,18 @@ header img { height:44px; width:auto; }
     applyTransform();
   }
 
+
+  function jumpToPin(id) {
+    const zz = zones[id];
+    if (!zz || !imgW || !imgH) return;
+    // Fit-ish zoom toward pin and center
+    const rect = stage.getBoundingClientRect();
+    const targetScale = Math.min(8, Math.max(scale, Math.min(rect.width / imgW, rect.height / imgH) * 2.4));
+    scale = targetScale;
+    tx = rect.width / 2 - zz.x * imgW * scale;
+    ty = rect.height / 2 - zz.y * imgH * scale;
+    applyTransform();
+  }
 
   function placePins() {
     pinsEl.innerHTML = '';
@@ -468,10 +486,10 @@ header img { height:44px; width:auto; }
 
   function renderLegend() {
     const L = LAYERS[layer];
-    let zonesHtml = '<div class="zone-list"><h2>Zones</h2>';
+    let zonesHtml = '<div class="zone-list"><h2>Zones</h2><p style="margin:0 0 8px;font-size:12px;color:#64748b">Tap a number to jump there</p>';
     ['1','2','3'].forEach(function(id) {
       const lab = ZONE_LABELS[id];
-      zonesHtml += '<div class="zone-item"><span class="num">' + id + '</span><div>' + lab[0] + '<small>' + lab[1] + '</small></div></div>';
+      zonesHtml += '<div class="zone-item" data-jump="' + id + '" role="button" tabindex="0"><span class="num">' + id + '</span><div>' + lab[0] + '<small>' + lab[1] + '</small></div></div>';
     });
     zonesHtml += '</div>';
     let editHtml = `
@@ -486,6 +504,11 @@ header img { height:44px; width:auto; }
       </div>`;
     legend.innerHTML = L.html + zonesHtml + editHtml;
     refreshEditJson();
+    legend.querySelectorAll('[data-jump]').forEach(function(row) {
+      const go = function() { jumpToPin(row.getAttribute('data-jump')); };
+      row.addEventListener('click', go);
+      row.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } });
+    });
     const save = document.getElementById('savePins');
     const reset = document.getElementById('resetPins');
     const dl = document.getElementById('downloadZones');
