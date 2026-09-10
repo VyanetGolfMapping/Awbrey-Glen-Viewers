@@ -1,41 +1,114 @@
 <!DOCTYPE html>
-<html lang="en"><head>
-<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Awbrey Glen — VYANET</title>
 <style>
-body{margin:0;font-family:-apple-system,system-ui,sans-serif;background:#0a0a0a;color:#f5f5f5}
-header{background:#0a0a0a;color:#fff;padding:16px;border-left:4px solid #16a34a;border-bottom:1px solid #262626;display:flex;justify-content:space-between;align-items:center}
-header img{height:56px}
-a.card{display:block;margin:14px;padding:18px;border:1px solid #262626;border-radius:14px;text-decoration:none;color:#f5f5f5;background:#141414;font-weight:700;font-size:18px;min-height:56px}
-a.card:hover{border-color:#16a34a}
-a.card span{display:block;font-weight:500;font-size:13px;color:#a3a3a3;margin-top:4px}
-a.card.dark{background:#111;border-color:#16a34a;color:#fff}
-a.card.dark span{color:#a3a3a3}
-.note{margin:14px;padding:12px;background:#141414;border-radius:10px;color:#d4d4d4;font-size:13px;line-height:1.45;border:1px solid #262626}
-.note strong{color:#22c55e}
-.platforms{margin:0 14px 8px;padding:0;list-style:none;display:grid;gap:6px}
-.platforms li{background:#141414;border:1px solid #262626;border-radius:10px;padding:10px 12px;font-size:13px;color:#a3a3a3}
-.platforms strong{color:#fff}
-
-.brand-logo{height:56px;width:auto;max-width:200px;object-fit:contain;background:#fff;border-radius:10px;padding:6px 10px;box-shadow:0 0 0 1px rgba(34,197,94,.35),0 4px 14px rgba(0,0,0,.35)}
-header{display:flex;justify-content:space-between;align-items:center;gap:12px}
-</style></head><body>
-<header class="brand-bar" style="display:block;padding:0;border-left:0;background:#0b1f12;border-bottom:2px solid #16a34a">
-<img class="logo-span" src="vyanet-logo-banner.png" alt="VYANET Drone Digital Mapping" style="display:block;width:100%;max-height:88px;object-fit:cover;background:#0b1f12" />
-<div style="padding:10px 16px;background:#0a0a0a;color:#fff"><h1 style="margin:0;font-size:18px;letter-spacing:.04em">AWBREY GLEN</h1><p style="margin:4px 0 0;color:#a3a3a3">VYANET Drone Digital Mapping</p></div>
-</header>
-<div class="note"><strong>Interactive viewers</strong> for Holes 7 &amp; 17 — pan/zoom, side legends, and zone pins. Layers: Thermal, Satellite (stitched drone), 2D Topo, Turf Health, plus interactive 3D.</div>
-<ul class="platforms">
-  <li><strong>Thermal</strong> — original thermal imagery (cool → hot)</li>
-  <li><strong>Satellite</strong> — new stitched drone ortho</li>
-  <li><strong>2D Topo</strong> — classic brown-contour topo (legend in side panel — numbers are relative elevation index 0–100)</li>
-  <li><strong>Turf Health</strong> — Critical / Stressed / Healthy from RGB stitch</li>
-  <li><strong>3D Interactive</strong> — Three.js orbit viewer (satellite texture + estimated DEM)</li>
-</ul>
-<a class="card" href="hole-7/index.html?v=20">Hole 7<span>Par 4 · downhill · pan/zoom · side legend · zone pins</span></a>
-<a class="card" href="hole-17/index.html?v=20">Hole 17<span>Par 4 · uphill · pan/zoom · side legend · zone pins</span></a>
-<a class="card dark" href="3d/index.html">3D Interactive<span>Holes 7 &amp; 17 · satellite texture + estimated height DEM</span></a>
-<a class="card" href="topo/index.html">2D Topographic Maps<span>Classic contour sheets · gallery</span></a>
-<a class="card" href="topo/legend.html">Topo contour legend<span>What the numbers on the maps mean</span></a>
-<a class="card" href="topo/turfhealth-legend.html">Turf Health legend<span>Critical (red) · Stressed (orange) · Healthy (green)</span></a>
-</body></html>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; min-height: 100%; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    background: #0a0a0a;
+    color: #f5f5f5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 16px 48px;
+  }
+  .brand {
+    width: min(960px, 100%);
+    margin: 0 auto;
+    background: #0b1f12;
+    border-bottom: 2px solid #16a34a;
+  }
+  .brand img {
+    display: block;
+    width: 100%;
+    max-height: 120px;
+    object-fit: cover;
+  }
+  .wrap {
+    width: min(960px, 100%);
+    margin: 28px auto 0;
+    text-align: center;
+  }
+  .wrap h1 {
+    margin: 0 0 6px;
+    font-size: 22px;
+    letter-spacing: .06em;
+    font-weight: 800;
+  }
+  .wrap p {
+    margin: 0 0 28px;
+    color: #a3a3a3;
+    font-size: 14px;
+  }
+  .holes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 22px;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  a.hole {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #f5f5f5;
+    background: #141414;
+    border: 1px solid #262626;
+    border-radius: 18px;
+    padding: 22px 16px 18px;
+    transition: border-color .15s, transform .15s, box-shadow .15s;
+    min-height: 280px;
+  }
+  a.hole:hover, a.hole:focus {
+    border-color: #16a34a;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(22,163,74,.18);
+    outline: none;
+  }
+  a.hole .mark {
+    width: 148px;
+    height: 148px;
+    object-fit: contain;
+    margin-bottom: 16px;
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,.45));
+  }
+  a.hole .label {
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: .03em;
+    line-height: 1.35;
+  }
+  a.hole .label span {
+    display: block;
+    font-weight: 600;
+    font-size: 13px;
+    color: #a3a3a3;
+    margin-top: 4px;
+  }
+</style>
+</head>
+<body>
+  <div class="brand">
+    <img src="vyanet-logo-banner.png" alt="VYANET Drone Digital Mapping" />
+  </div>
+  <div class="wrap">
+    <h1>AWBREY GLEN</h1>
+    <p>Select a hole to open its interactive viewer</p>
+    <div class="holes">
+      <a class="hole" href="hole-7/index.html?v=21">
+        <img class="mark" src="awbrey-glen-mark.png" alt="Awbrey Glen" />
+        <div class="label">Awbrey Glen Hole 7<span>Par 4</span></div>
+      </a>
+      <a class="hole" href="hole-17/index.html?v=21">
+        <img class="mark" src="awbrey-glen-mark.png" alt="Awbrey Glen" />
+        <div class="label">Awbrey Glen Hole 17<span>Par 4</span></div>
+      </a>
+    </div>
+  </div>
+</body>
+</html>
